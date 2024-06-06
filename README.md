@@ -47,3 +47,6 @@ El proyecto sigue la estructura estándar de Maven.
 - Para ejecutar el proyecto completo, utiliza el siguiente tag: `@ChallengetecnicoPinApp`.
 - Para ejecutar solo los escenarios de Mercado Libre (pruebas FrontEnd), utiliza el tag: `@SearchMercadoLibre`.
 - Para ejecutar los escenarios de la API de PetShop (pruebas Backend), utiliza el tag: `@ApiPetShop`.
+- Ejemplo de ejecución
+```sh
+mvn test -Dcucumber.options="--tags @ChallengetecnicoPinApp"
