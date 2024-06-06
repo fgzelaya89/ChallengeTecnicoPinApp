@@ -1,34 +1,43 @@
-# Automatización de Pruebas con Java, Selenium WebDriver y Cucumber
+# Challenge Técnico para PinApp
 
-Este proyecto de automatización de pruebas utiliza las siguientes tecnologías:
+Este es un proyecto técnico creado para PinApp, en el cual se utilizó la plataforma de Mercado Libre para la generación de pruebas automatizadas.
 
-- **Lenguaje de Programación**: Java
-- **Herramienta de Automatización**: Selenium WebDriver (versión 4.10.0)
-- **Framework de Pruebas BDD**: Cucumber (versión 4.2.6)
-- **Navegador de Pruebas**: Google Chrome
+## Tecnologías y Versiones de las Librerías
+
+- **Java**: 17.0.4.1
+- **Selenium**: 4.10.0
+- **Cucumber**: 7.7.0
+- **JUnit**: 5.8.2
+- **WebDriver Manager**: 5.3.2
 
 ## Descripción del Proyecto
 
-Este proyecto tiene como objetivo automatizar pruebas en la página web de OpenCart, específicamente en la URL [https://opencart.abstracta.us/](https://opencart.abstracta.us/). Utilizamos Java como lenguaje de programación, Selenium WebDriver (versión 4.10.0) como herramienta de automatización y Cucumber como framework de pruebas BDD para crear escenarios de prueba legibles y mantenibles.
-
-## Versión de la Automatización
-
-La versión actual de la automatización es la 1.0. Esta versión representa el estado actual del proyecto y se utilizará para realizar pruebas en la página web de OpenCart.
-
-## Feature
-- **AltaUsuario**: verificar y validar que la pagina "Register" este dando de alta a los usuarios nuevo.
+Este proyecto consiste en la automatización de pruebas de la página web de Mercado Libre. Utiliza Selenium para la automatización del navegador, Cucumber para la gestión de pruebas basadas en BDD (Behavior Driven Development), y Page Object Model (POM) para la organización del código.
 
 ## Configuración del Proyecto
 
-Para ejecutar las pruebas de este proyecto en tu entorno local, sigue estos pasos:
+### Prerrequisitos
 
-1. Clona el repositorio desde [URL del Repositorio]([URL_DEL_REPOSITORIO](https://github.com/fgzelaya89/cpaopencart.git)).
+- Java JDK 17 o superior
+- Maven 3.6.0 o superior
+- ChromeDriver compatible con la versión del navegador Chrome instalada
 
-2. Asegúrate de tener instalado Java en tu máquina.
+### Instalación
 
-3. Configura el navegador Chrome como tu navegador de pruebas. Puedes hacerlo instalando el controlador (driver) de Chrome y ajustando la configuración en los archivos de configuración del proyecto.
+1. Clona el repositorio:
+    ```sh
+    git clone https://github.com/fgzelaya89/ChallengeTecnicoPinApp.git
+    cd ChallengeTecnicoPinApp
+    ```
 
-4. Ejecuta las pruebas utilizando Cucumber y el runner correspondiente.
+2. Configura las dependencias de Maven:
+    ```sh
+    mvn clean install
+    ```
 
-```bash
-mvn test
+3. Asegúrate de que `chromedriver` esté disponible en tu PATH, o configúralo en el proyecto.
+
+### Estructura del Proyecto
+
+El proyecto sigue la estructura estándar de Maven:
+
