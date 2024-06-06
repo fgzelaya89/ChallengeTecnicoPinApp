@@ -88,10 +88,43 @@ public class UserSteps {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             User user = objectMapper.readValue(response.asString(), User.class);
+            Assert.assertEquals("No son iguales",userSend.getId(),user.getId());
+            Assert.assertEquals("No son iguales",userSend.getEmail(),user.getEmail());
+            Assert.assertEquals("No son iguales",userSend.getUsername(),user.getUsername());
+            Assert.assertEquals("No son iguales",userSend.getFirstName(),user.getFirstName());
+            Assert.assertEquals("No son iguales",userSend.getPassword(),user.getPassword());
+            Assert.assertEquals("No son iguales",userSend.getPhone(),user.getPhone());
+            Assert.assertEquals("No son iguales",userSend.getUserStatus(),user.getUserStatus());
             System.out.println(user);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    @When("Actualizamos los datos del usuario (.*),(.*),(.*),(.*),(.*),(.*),(.*) y (.*)")
+    public void actualizamosLosDatosDelUsuariIdUsernameFirstNameLastNameEmailPasswordPhoneYUserStatus(String id, String username, String firstName, String lastName, String email, String password, String phone, String userStatus) throws JsonProcessingException {
+        RequestSpecification request = RestAssured.given();
+        request.header("Content-Type", "application/json");
+
+        User userSend = new User();
+        userSend.setId(Integer.parseInt(id));
+        userSend.setEmail(email);
+        userSend.setUsername(username);
+        userSend.setFirstName(firstName);
+        userSend.setLastName(lastName);
+        userSend.setPassword(password);
+        userSend.setPhone(phone);
+        userSend.setUserStatus(Integer.parseInt(userStatus));
+
+
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(userSend);
+        System.out.println("json: " + json);
+        request.body(json);
+
+        response = request.put(BASE_URL + "/user/"+username);
+        // You can print or log the response if needed
+        System.out.println(response.asString());
     }
 }

@@ -3,7 +3,7 @@ Feature: Buscar Productos MercadoLibre
   Background: precondicion de ejecuion
     And Configuración del driver de Chrome
 
-  @ChallengetecnicoPinApp
+  @ChallengetecnicoPinApp @SearchMercadoLibre
   Scenario: Buscar un producto y verificar el precio
     Given cuando el usuario ingresa home page de MercadoLibre
     When el usuario busca el siguiente producto "notebook gamer"
@@ -12,7 +12,7 @@ Feature: Buscar Productos MercadoLibre
     And Se desplazo hacia abajo en la pagina
     Then el precio del producto es igual a "1.075.999"
 
-  @ChallengetecnicoPinApp
+  @ChallengetecnicoPinApp @SearchMercadoLibre
   Scenario: Buscar un producto y verificar el detalle
     Given cuando el usuario ingresa home page de MercadoLibre
     When el usuario busca el siguiente producto "smartphone"
