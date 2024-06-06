@@ -6,6 +6,7 @@ import PageObjectModel.HomePage;
 import PageObjectModel.ProductListPage;
 import PageObjectModel.ProductPage;
 import cucumber.api.java.After;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -24,8 +25,8 @@ public class StepDefinitions {
     private ProductListPage productListPage;
     private ProductPage productPage;
 
-    @Before
-    public void setUp() {
+    @And("Configuración del driver de Chrome")
+    public void configuraciónDelDriverDeChrome() {
         // Configuración del driver de Chrome
         System.setProperty("webdriver.chrome.driver", Properties.pathChromeDriver);
 
@@ -43,7 +44,6 @@ public class StepDefinitions {
         productListPage = new ProductListPage(driver);
         productPage = new ProductPage(driver);
     }
-
     @After
     public void tearDown() {
         // Cerrar el navegador
@@ -52,40 +52,51 @@ public class StepDefinitions {
         }
     }
 
-    @Given("I am on the MercadoLibre home page")
-    public void iAmOnTheMercadoLibreHomePage() {
+
+
+
+    @When("Se desplazo hacia abajo en la pagina")
+    public void iScrollDownThePage() {
+        productPage.takeScreenshot(Properties.pathtakeScreenshot);
+        productPage.scrollPage();
+
+    }
+
+    @Given("cuando el usuario ingresa home page de MercadoLibre")
+    public void cuandoElUsuarioIngresaHomePageDeMercadoLibre() {
         driver.get("https://www.mercadolibre.com.ar/");
     }
 
-    @When("I search for {string}")
-    public void iSearchFor(String productName) {
+    @When("el usuario busca el siguiente producto {string}")
+    public void elUsuarioBuscaElSiguienteProducto(String productName) {
         homePage.searchProduct(productName);
     }
 
-    @Then("I should see the product {string}")
-    public void iShouldSeeTheProduct(String expectedText) {
+    @Then("el usuario observa el siguiente producto {string}")
+    public void elUsuarioObservaElSiguienteProducto(String expectedText) {
         productListPage.selectFirstProduct(expectedText);
     }
 
-    @When("I select the product")
-    public void iSelectTheProduct() {
+    @Then("el usuario quiere ver el detalle {string}")
+    public void elUsuarioQuiereVerElDetalle(String expectedText) {
+        productListPage.selectFirstProductDetail(expectedText);
+    }
+
+    @And("selecciona el producto")
+    public void seleccionaElProducto() {
         productListPage.selectFirstProduct();
     }
 
-    @When("I scroll down the page")
-    public void iScrollDownThePage() {
-        productPage.scrollPage();
-    }
-
-    @Then("I should see the price {string}")
-    public void iShouldSeeThePrice(String expectedPrice) {
-
+    @Then("el precio del producto es igual a {string}")
+    public void elPrecioDelProductoEsIgualA(String expectedPrice) {
+        productPage.takeScreenshot(Properties.pathtakeScreenshot);
         productPage.verifyAndAddToCart(expectedPrice);
     }
 
-    @When("I add the product to the cart")
-    public void iAddTheProductToTheCart() {
-        productPage.verifyAndAddToCart("");
+    @And("valida que contega el siguiente detalle {string}")
+    public void validaQueContegaElSiguienteDetalle(String detailText) {
+        productPage.takeScreenshot(Properties.pathtakeScreenshot);
+        productPage.verifyDetailProduct(detailText);
     }
 
 

@@ -1,12 +1,13 @@
 package PageObjectModel;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 
 public class BasePage {
@@ -52,6 +53,18 @@ public class BasePage {
             clickElement(closeButton);
         } catch (Exception e) {
             // El banner de cookies no se mostró o ya está cerrado
+        }
+    }
+
+    public void takeScreenshot(String filePath) {
+        TakesScreenshot screenshot = (TakesScreenshot) driver;
+        File srcFile = screenshot.getScreenshotAs(OutputType.FILE);
+        File destFile = new File(filePath);
+        try {
+            FileUtils.copyFile(srcFile, destFile);
+            System.out.println("Captura de pantalla tomada y guardada en: " + destFile.getAbsolutePath());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
